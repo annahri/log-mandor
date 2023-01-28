@@ -2,6 +2,19 @@
 
 log-mandor.sh is a Bash script which allows you to monitor a log file and sends an alert if the matching pattern found.
 
+
+
+## Requirements
+
+1. Bash 5.0 or greater
+2. Sendmail
+
+## Installation
+
+Just simply put the script in a directory recogized by your PATH variable and make it executable.
+
+## Usage
+
 ```plain
 log-mandor.sh - Monitors a log file and sends an alert when a matching pattern found.
 Usage: log-mandor.sh <flags>
@@ -30,19 +43,9 @@ Optional flags:
 Other flags:
  -s Interactively sets up a systemd service
  -h Show this help info
-
 ```
 
-## Requirements
-
-1. Bash 5.0 or greater
-2. Sendmail
-
-## Installation
-
-Just simply put the script in a directory recogized by your PATH variable and make it executable.
-
-## Example Usage
+### Example
 
 ```bash
 ./log-mandor.sh -f /var/log/syslog -p 'Main process exited, code=killed' -t 60 -T 'recipient@domain.tld' -F 'Annahri PC <annahri-pc@local.lan>' -S "Test send log-based alert" --add-note "Mantab jaya boss"
@@ -67,6 +70,11 @@ It will prompt you the required values, and it will create the daemonized versio
 systemctl start logmandor-{name}
 systemctl stop logmandor-{name}
 ```
+### Using GMAIL as relay
+
+You can follow this tutorial to setup Gmail as SMTP relay:
+
+- [Configure Sendmail to Relay Emails through Gmail SMTP](https://tecadmin.net/sendmail-to-relay-emails-through-gmail-stmp/)
 
 ## Todo
 
