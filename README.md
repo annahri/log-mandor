@@ -2,7 +2,7 @@
 
 log-mandor.sh is a Bash script which allows you to monitor a log file and sends an alert if the matching pattern found.
 
-```bash
+```plain
 log-mandor.sh - Monitors a log file and sends an alert when a matching pattern found.
 Usage: log-mandor.sh <flags>
 
@@ -37,3 +37,36 @@ Other flags:
 
 1. Bash 5.0 or greater
 2. Sendmail
+
+## Installation
+
+Just simply put the script in a directory recogized by your PATH variable and make it executable.
+
+## Example Usage
+
+```bash
+./log-mandor.sh -f /var/log/syslog -p 'Main process exited, code=killed' -t 60 -T 'recipient@domain.tld' -F 'Annahri PC <annahri-pc@local.lan>' -S "Test send log-based alert" --add-note "Mantab jaya boss"
+```
+The example above will monitor `/var/log/syslog` and if there's a line that matches the pattern "Main process exited, code=killed", it will send an email to `recipient@domain.tld` with subject "Test send log", and with additional note "Mantab jaya boss". The `-t 60` means, if there are more log entry within 60 seconds, only the very first will be alerted.
+
+### Creating systemd service
+
+You can also create a systemd service unit by doing:
+
+```
+./log-mandor.sh -s
+```
+
+It will prompt you the required values, and it will create the daemonized version that you can start using:
+
+```
+systemctl start logmandor-{name}
+systemctl stop logmandor-{name}
+```
+
+## Todo
+
+- [ ] HTML-formatted email
+- [ ] Support other MTAs
+- [ ] Extract values from the log entry
+- ...
