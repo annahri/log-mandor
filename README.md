@@ -49,6 +49,10 @@ Just simply put the script in a directory recogized by your PATH variable and ma
 ```
 The example above will monitor `/var/log/syslog` and if there's a line that matches the pattern "Main process exited, code=killed", it will send an email to `recipient@domain.tld` with subject "Test send log", and with additional note "Mantab jaya boss". The `-t 60` means, if there are more log entry within 60 seconds, only the very first will be alerted.
 
+Example email alert:
+
+![email alert](./screenshot.jpg)
+
 ### Creating systemd service
 
 You can also create a systemd service unit by doing:
@@ -69,4 +73,4 @@ systemctl stop logmandor-{name}
 - [ ] HTML-formatted email
 - [ ] Support other MTAs
 - [ ] Extract values from the log entry
-- ...
+- [ ] ...
